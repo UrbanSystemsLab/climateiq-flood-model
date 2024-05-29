@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--study_area', default='studyarea-1')
     parser.add_argument('--config', default="config-1")
     parser.add_argument('--input_bucket',  default='climateiq-flood-simulation-input')
-    parser.add_argument('--configuration_bucket', default='climateiq-flood-simulation-config')
+    parser.add_argument('--configuration_bucket', default='climateiq-citycat-config')
     parser.add_argument('--output_bucket',  default='climateiq-flood-simulation-output')
     parser.add_argument('--memory', choices=range(16,129),type=int,help="Value must be between 16 and 128", default=96)
     parser.add_argument('--repository_name', default='citycat-repository')
@@ -76,7 +76,7 @@ def main():
                     volume["gcs"]["remotePath"] = args.input_bucket
                 elif (mountpath == "/mnt/disks/share/climateiq-flood-simulation-output"):
                     volume["gcs"]["remotePath"] = args.output_bucket
-                elif (mountpath == "/mnt/disks/share/climateiq-flood-simulation-config"):
+                elif (mountpath == "/mnt/disks/share/climateiq-citycat-config"):
                     volume["gcs"]["remotePath"] = args.configuration_bucket
 
             json.dump(new_job, f, indent=1)

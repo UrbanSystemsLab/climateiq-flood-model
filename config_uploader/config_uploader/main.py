@@ -8,7 +8,7 @@ from typing import List, Mapping, Sequence
 import jinja2
 from google.cloud import storage
 
-_CITY_CAT_CONFIG_BUCKET = "climateiq-flood-simulation-config"
+_CITY_CAT_CONFIG_BUCKET = "climateiq-citycat-config"
 
 
 @dataclasses.dataclass(slots=True)
@@ -190,7 +190,7 @@ def _parse_args() -> argparse.Namespace:
         help=(
             "Name of the Google Cloud Storage bucket to upload configuration files to."
         ),
-        default="climateiq-flood-simulation-config",
+        default="climateiq-citycat-config",
     )
 
     return parser.parse_args()

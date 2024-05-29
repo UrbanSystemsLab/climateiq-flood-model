@@ -29,7 +29,7 @@ RUN dpkg --add-architecture i386 && \
 
 # Set env variable defaults
 ENV INPUT_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-input
-ENV CONFIG_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-config
+ENV CONFIG_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-citycat-config
 ENV OUTPUT_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-output
 ENV STUDY_AREA="studyarea_1"
 ENV CONFIG="config_1"

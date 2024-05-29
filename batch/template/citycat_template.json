@@ -28,9 +28,9 @@
      "volumes": [
       {
        "gcs": {
-        "remotePath": "climateiq-flood-simulation-config"
+        "remotePath": "climateiq-citycat-config"
        },
-       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-config"
+       "mountPath": "/mnt/disks/share/climateiq-citycat-config"
       },
       {
         "gcs": {
