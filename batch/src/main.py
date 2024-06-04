@@ -5,6 +5,7 @@ from google.cloud import batch_v1
 from file_processing import process_jobs, clear_directory
 from batch import create_job_request
 import uuid
+from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(
@@ -38,13 +39,14 @@ def main():
 
     # Read in the config.
     configs = []
-    with open(os.path.join(batch_directory, "template", str(args.config) + ".txt"), 'r') as f:
+    with open(os.path.join(batch_directory, "../config_uploader/out/", str(args.config) + ".txt"), 'r') as f:
         for line in f.readlines():
             _,c,_,r = line.split()
             configs.append({"CityCat_Config": c,  "Rainfall_Data": r})
 
     # Deletes anything previously in jobs directory
     jobs_directory = os.path.join(batch_directory, "jobs")
+    Path(jobs_directory).mkdir(parents=True, exist_ok=True)
     clear_directory(jobs_directory)
 
     for config in configs:
@@ -56,7 +58,7 @@ def main():
         # Underscores are not valid in the job name. It must follow the regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
         # This replaces any underscores for hyphens.
         new_jobname = new_jobname.replace("_", "-") 
-        with open(os.path.join(jobs_directory, f"{new_jobname}.json"), 'w') as f:
+        with open(os.path.join(jobs_directory, f"{new_jobname}.json"), 'w+') as f:
             # Modify the template, then dump it into the jobs folder
             new_job = template
             # Set the new job name
