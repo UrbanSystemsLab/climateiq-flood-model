@@ -55,6 +55,9 @@ python3 src/main.py --no-dry_run
 
 # Set the study area and memory
 python3 src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1
+
+# A dry run to generate the configs
+python3 src/main.py --dry_run --study_area Manhattan --config config_v1 --project_id climateiq_test
 ```
 ### For windows 
 
@@ -65,7 +68,7 @@ py src/main.py --dry_run
 py src/main.py --no-dry_run
 
 # Set the study area and memory
-py src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1
+py src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1 --project_id climateiq_test
 ```
 
 ## To cancel a job
