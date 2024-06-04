@@ -59,6 +59,12 @@ python3 src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1
 # A dry run to generate the configs
 python3 src/main.py --dry_run --study_area Manhattan --config config_v1 --project_id climateiq_test
 ```
+
+```
+# To run all the jobs in the folder
+python3 src/run_jobs.py --dry_run
+python3 src/run_jobs.py --no-dry_run
+```
 ### For windows 
 
 ```
