@@ -1,0 +1,67 @@
+{
+ "name": "r8c4-manhattan-config-v1-90df",
+ "taskGroups": [
+  {
+   "taskCount": "1",
+   "parallelism": "1",
+   "taskSpec": {
+    "computeResource": {
+     "cpuMilli": "32000",
+     "memoryMib": "98304"
+    },
+    "runnables": [
+     {
+      "container": {
+       "imageUri": "us-central1-docker.pkg.dev/climateiq-test/citycat-repository/citycat-image:latest",
+       "entrypoint": ""
+      },
+      "environment": {
+       "variables": {
+        "CITYCAT_CONFIG_FILE": "4",
+        "RAINFALL_DATA_FILE": "8",
+        "CONFIG": "config_v1",
+        "STUDY_AREA": "Manhattan"
+       }
+      }
+     }
+    ],
+    "volumes": [
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-config"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-config"
+     },
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-output"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-output"
+     },
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-input"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
+     }
+    ]
+   }
+  }
+ ],
+ "labels": {
+  "project": "flood"
+ },
+ "allocationPolicy": {
+  "instances": [
+   {
+    "policy": {
+     "provisioningModel": "STANDARD",
+     "machineType": "e2-custom-32-98304"
+    }
+   }
+  ]
+ },
+ "logsPolicy": {
+  "destination": "CLOUD_LOGGING"
+ }
+}
