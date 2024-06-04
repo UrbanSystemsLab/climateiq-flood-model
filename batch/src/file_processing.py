@@ -30,6 +30,8 @@ def clear_directory(directory):
         directory: the input directory that contains the *.json files 
     """
     print(f"Clearing input in directory `{directory}`...")
+    if (not os.path.exists(directory)):
+        return
     files = [ f for f in os.listdir(directory) if f.endswith(".json") ]
     for file in files:
         os.remove(os.path.join(directory, file))
