@@ -1,5 +1,5 @@
 {
- "name": "r13c8-manhattan-config-v1-ef7a",
+ "name": "r11c6-Manhattan-config-v1-dfb9",
  "taskGroups": [
   {
    "taskCount": "1",
@@ -17,8 +17,8 @@
       },
       "environment": {
        "variables": {
-        "CITYCAT_CONFIG_FILE": "8",
-        "RAINFALL_DATA_FILE": "13",
+        "CITYCAT_CONFIG_FILE": "6",
+        "RAINFALL_DATA_FILE": "11",
         "CONFIG": "config_v1",
         "STUDY_AREA": "Manhattan"
        }
