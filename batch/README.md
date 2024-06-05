@@ -86,3 +86,35 @@ gcloud batch jobs delete --location=us-central1 <job_name>
 ```
 gcloud beta batch jobs submit r1c1-manhattan-config-v1-8266 --location=us-central1 --config=jobs/r1c1-manhattan-config-v1-8266.json
 ```
+
+## Quotas
+
+If you hit a quota max, try changing the regions
+
+```
+gcloud compute regions list
+```
+
+You should see a list like
+```
+us-central1              68/72   200/40960  3/69       0/21                UP
+us-east1                 64/72   0/40960    2/69       0/21                UP
+us-east4                 64/72   0/40960    2/69       0/21                UP
+us-east5                 64/72   0/40960    2/69       0/21                UP
+us-south1                64/72   0/40960    2/69       0/21                UP
+us-west1                 97/100  10/40960   4/69       0/21                UP
+us-west2                 64/72   0/40960    2/69       0/21                UP
+us-west3                 64/72   0/40960    2/69       0/21                UP
+us-west4                 64/72   0/40960    2/69       0/21                UP
+```
+
+The first column tells you the CPU usage and quota.
+
+To run a job in a specific region use the script `run.sh` and to delete a job in a specific region use `delete.sh`
+
+```
+chmod +x scripts/run.sh 
+chmod +x scripts/delete.sh 
+```
+
+Make sure to set the env variables correctly.
