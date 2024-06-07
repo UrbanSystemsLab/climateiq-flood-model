@@ -3,7 +3,7 @@ import collections
 import dataclasses
 import itertools
 import pathlib
-from typing import List, Mapping, Sequence
+from typing import List, Mapping, Sequence, TextIO
 
 import jinja2
 from google.cloud import storage
@@ -49,8 +49,10 @@ def main() -> None:
     uploaded_configs = _upload_city_cat_configs(
         bucket, args.configuration_name, configs_by_duration, template
     )
-    with open(args.batch_configuration_path, "wt") as batch_config:
-        _write_batch_config(batch_config, uploaded_configs)
+    with open(args.batch_configuration_path, "w+t") as batch_config:
+        _write_and_upload_batch_config(
+            batch_config, uploaded_configs, bucket, args.configuration_name
+        )
 
 
 def _group_configs_by_duration(
@@ -66,7 +68,10 @@ def _group_configs_by_duration(
 
 
 def _upload_city_cat_configs(
-    bucket, config_name, configs_by_duration, template
+    bucket: storage.Bucket,
+    config_name: str,
+    configs_by_duration: Mapping[int, Sequence[pathlib.Path]],
+    template: jinja2.Template,
 ) -> Sequence[_ConfigMapping]:
     """Uploads rain and creates accompanying CityCAT configs to GCS."""
     configs: List[_ConfigMapping] = []
@@ -139,12 +144,21 @@ def _parse_rainfall_config(path: pathlib.Path) -> Sequence[_RainEvent]:
     return entries
 
 
-def _write_batch_config(batch_config_file, uploaded_configs) -> None:
-    """Writes a batch config file given a mapping of uploaded rain & CityCAT configs."""
+def _write_and_upload_batch_config(
+    batch_config_file: TextIO,
+    uploaded_configs: Sequence[_ConfigMapping],
+    bucket: storage.Bucket,
+    config_name: str,
+) -> None:
+    """Writes & uploads a batch config file given a mapping of rain & CityCAT config."""
     for entry in uploaded_configs:
         batch_config_file.writelines(
             f"-c {entry.city_cat_config} -r {entry.rainfall_config}\n"
         )
+
+    batch_config_file.flush()
+    batch_config_file.seek(0)
+    bucket.blob(f"{config_name}/batch_config.txt").upload_from_file(batch_config_file)
 
 
 def _parse_args() -> argparse.Namespace:

@@ -128,18 +128,34 @@ def test_parse_rainfall_config_bad_time_interval():
     assert "entries separated by non-five minute interval" in str(excinfo.value)
 
 
-def test_write_batch_config():
-    """Ensures we produce correct batch config files."""
+def test_write_and_upload_batch_config():
+    """Ensures we produce and upload correct batch config files."""
+    mappings = [
+        main._ConfigMapping(1, 1),
+        main._ConfigMapping(1, 2),
+        main._ConfigMapping(2, 3),
+    ]
+    expected_file_contents = "-c 1 -r 1\n-c 1 -r 2\n-c 2 -r 3\n"
+
+    def assert_file_has_expected_contents(buf):
+        """Ensure the file when read has the expected contents."""
+        assert buf.read() == expected_file_contents
+
+    mock_bucket = mock.Mock(spec=storage.Bucket)
+    # Ensure we call upload_from_file with a file containing the contents we expect.
+    mock_bucket.blob().upload_from_file.side_effect = assert_file_has_expected_contents
+
     config_file = io.StringIO()
-    main._write_batch_config(
-        config_file,
-        [
-            main._ConfigMapping(1, 1),
-            main._ConfigMapping(1, 2),
-            main._ConfigMapping(2, 3),
-        ],
+    mock_bucket.reset_mock()
+    main._write_and_upload_batch_config(
+        config_file, mappings, mock_bucket, "config_name"
     )
-    assert config_file.getvalue() == "-c 1 -r 1\n-c 1 -r 2\n-c 2 -r 3\n"
+
+    assert config_file.getvalue() == expected_file_contents
+
+    # Ensure we uploaded to the expected GCS location with the config file.
+    mock_bucket.blob.assert_called_once_with("config_name/batch_config.txt")
+    mock_bucket.blob().upload_from_file.assert_called_once_with(config_file)
 
 
 def test_group_configs_by_duration():
