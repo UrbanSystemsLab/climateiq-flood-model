@@ -1,5 +1,5 @@
 {
- "name": "r22c13-manhattan-config-v1-8315",
+ "name": "r13c8-manhattan-config-v1-79a1",
  "taskGroups": [
   {
    "taskCount": "1",
@@ -17,8 +17,8 @@
       },
       "environment": {
        "variables": {
-        "CITYCAT_CONFIG_FILE": "13",
-        "RAINFALL_DATA_FILE": "22",
+        "CITYCAT_CONFIG_FILE": "8",
+        "RAINFALL_DATA_FILE": "13",
         "CONFIG": "config_v1",
         "STUDY_AREA": "Manhattan"
        }
@@ -43,6 +43,12 @@
        "remotePath": "climateiq-flood-simulation-input"
       },
       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
+     },
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-workdir"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-workdir"
      }
     ]
    }

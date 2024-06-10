@@ -1,5 +1,5 @@
 {
- "name": "r18c10-manhattan-config-v1-055b",
+ "name": "r18c10-manhattan-config-v1-5bae",
  "taskGroups": [
   {
    "taskCount": "1",
@@ -43,6 +43,12 @@
        "remotePath": "climateiq-flood-simulation-input"
       },
       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
+     },
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-workdir"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-workdir"
      }
     ]
    }

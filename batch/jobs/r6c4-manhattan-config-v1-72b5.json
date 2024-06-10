@@ -1,5 +1,5 @@
 {
- "name": "r6c4-manhattan-config-v1-4170",
+ "name": "r6c4-manhattan-config-v1-72b5",
  "taskGroups": [
   {
    "taskCount": "1",
@@ -43,6 +43,12 @@
        "remotePath": "climateiq-flood-simulation-input"
       },
       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
+     },
+     {
+      "gcs": {
+       "remotePath": "climateiq-flood-simulation-workdir"
+      },
+      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-workdir"
      }
     ]
    }
