@@ -31,6 +31,7 @@ RUN dpkg --add-architecture i386 && \
 ENV INPUT_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-input
 ENV CONFIG_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-config
 ENV OUTPUT_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-output
+ENV WORKDIR_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-workdir
 ENV STUDY_AREA="studyarea_1"
 ENV CONFIG="config_1"
 ENV CITYCAT_CONFIG_FILE=1
