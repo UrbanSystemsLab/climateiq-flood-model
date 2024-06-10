@@ -106,6 +106,7 @@ Running the following script tags and pushes the image
 ```shell
 chmod +x ../artifact_repository/submit.sh 
 PROJECT_ID="climateiq-test" ../artifact_repository/submit.sh
+PROJECT_ID="climateiq" ../artifact_repository/submit.sh
 ```
 
 <details>

@@ -8,11 +8,14 @@ echo "CONFIG=$CONFIG"
 echo "INPUT_MOUNT_DIRECTORY=$INPUT_MOUNT_DIRECTORY"
 echo "CONFIG_MOUNT_DIRECTORY=$CONFIG_MOUNT_DIRECTORY"
 echo "OUTPUT_MOUNT_DIRECTORY=$OUTPUT_MOUNT_DIRECTORY"
+echo "WORKDIR_MOUNT_DIRECTORY=$WORKDIR_MOUNT_DIRECTORY"
 echo "DRY_RUN=$DRY_RUN"
 
 # Create a directory to run everything in
-mkdir run
-cd run
+cd $WORKDIR_MOUNT_DIRECTORY
+rm -rf run_config_$CITYCAT_CONFIG_FILE_rainfall_$RAINFALL_DATA_FILE
+mkdir -p run_config_$CITYCAT_CONFIG_FILE_rainfall_$RAINFALL_DATA_FILE
+cd run_config_$CITYCAT_CONFIG_FILE_rainfall_$RAINFALL_DATA_FILE
 
 # Get the CityCat executable and study area information from the input bucket.
 cp $INPUT_MOUNT_DIRECTORY/CityCat.exe . 
@@ -49,7 +52,7 @@ fi
 
 # Cleanup
 cd ..
-rm -rf run
+rm -rf run_config_$CITYCAT_CONFIG_FILE_rainfall_$RAINFALL_DATA_FILE
 pkill tail
 
 echo "Finished execute.sh"
