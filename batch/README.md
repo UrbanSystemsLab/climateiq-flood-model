@@ -115,6 +115,8 @@ To run a job in a specific region use the script `run.sh` and to delete a job in
 ```
 chmod +x scripts/run.sh 
 chmod +x scripts/delete.sh 
+JOB_NAME=r11c6-manhattan-config-v1-8a04 scripts/run.sh 
+JOB_NAME=r17c9-manhattan-config-v1-cd47 LOCATION=us-central1  scripts/run.sh
 ```
 
 Make sure to set the env variables correctly.
