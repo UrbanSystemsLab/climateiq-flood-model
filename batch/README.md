@@ -53,8 +53,11 @@ python3 src/main.py
 python3 src/main.py --dry_run
 python3 src/main.py --no-dry_run
 
+# Set the config and project
+python3 src/main.py --dry_run --project=climateiq --config alevenb_config
+
 # Set the study area and memory
-python3 src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1
+python3 src/main.py --dry_run --study_area studyarea_2 --memory 128
 ```
 ### For windows 
 
@@ -66,6 +69,11 @@ py src/main.py --no-dry_run
 
 # Set the study area and memory
 py src/main.py --dry_run --study_area studyarea_2 --memory 128 --config 1
+```
+
+## To see a job
+```
+gcloud batch jobs describe --location=us-central1 <job_name>
 ```
 
 ## To cancel a job

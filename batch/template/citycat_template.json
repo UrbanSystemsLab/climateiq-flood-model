@@ -33,17 +33,23 @@
        "mountPath": "/mnt/disks/share/climateiq-flood-simulation-config"
       },
       {
-        "gcs": {
-         "remotePath": "climateiq-flood-simulation-output"
-        },
-        "mountPath": "/mnt/disks/share/climateiq-flood-simulation-output"
-       }
-    ,  {
-      "gcs": {
-       "remotePath": "climateiq-flood-simulation-input"
+       "gcs": {
+        "remotePath": "climateiq-flood-simulation-output"
+       },
+       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-output"
       },
-      "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
-     }
+      {
+       "gcs": {
+        "remotePath": "climateiq-flood-simulation-input"
+       },
+       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-input"
+      },
+      {
+       "gcs": {
+        "remotePath": "climateiq-flood-simulation-workdir"
+       },
+       "mountPath": "/mnt/disks/share/climateiq-flood-simulation-workdir"
+      }
      ]
     }
    }

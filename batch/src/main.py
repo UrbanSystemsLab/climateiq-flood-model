@@ -15,7 +15,7 @@ def main():
     parser.add_argument('--template_name', default='citycat_template.json')
     parser.add_argument('--dry_run', action=argparse.BooleanOptionalAction)
     parser.add_argument('--study_area', default='studyarea-1')
-    parser.add_argument('--config', default="config-1")
+    parser.add_argument('--config', default="config_1")
     parser.add_argument('--input_bucket',  default='climateiq-flood-simulation-input')
     parser.add_argument('--configuration_bucket', default='climateiq-flood-simulation-config')
     parser.add_argument('--output_bucket',  default='climateiq-flood-simulation-output')
