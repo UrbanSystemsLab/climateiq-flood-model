@@ -73,7 +73,7 @@ The following buckets except the following structure:
 - study_area1
   - Buildings.txt
   - Domain_DEM.asc
-  - GreenAreas.txt
+  - GreenAreas.txt (NOTE: If the file contains soil classes, file name shoud be Spatial_GreenAreas.txt, otherwise, file name: GreenAreas.txt)
 - manhattan
   - Buildings.txt
   - Domain_DEM.asc
