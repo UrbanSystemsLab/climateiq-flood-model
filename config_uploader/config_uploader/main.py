@@ -205,6 +205,10 @@ def _parse_args() -> argparse.Namespace:
             "Name of the Google Cloud Storage bucket to upload configuration files to."
         ),
         default="climateiq-flood-simulation-config",
+        choices=[
+            "test-climateiq-flood-simulation-config",
+            "climateiq-flood-simulation-config",
+        ],
     )
 
     return parser.parse_args()
