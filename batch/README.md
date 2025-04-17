@@ -118,3 +118,10 @@ chmod +x scripts/delete.sh
 ```
 
 Make sure to set the env variables correctly.
+
+python config_uploader/main.py \
+  --rainfall-directory /home/jainr/climateiq-flood-model/config_uploader/data/Rainfall_Scenarios_Atlas14_Atlanta \
+  --configuration-name Atlanta_config \
+  --batch-configuration-path out/Atlanta_batch_config_file \
+  --configuration-bucket climateiq-flood-simulation-config
+  python3 src/main.py --dry_run --study_area Atlanta --config Atlanta_config --project_id climateiq

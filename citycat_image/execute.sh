@@ -19,7 +19,7 @@ cp $INPUT_MOUNT_DIRECTORY/CityCat.exe .
 chmod -755 ./CityCat.exe 
 cp $INPUT_MOUNT_DIRECTORY/$STUDY_AREA/Buildings.txt . 
 cp $INPUT_MOUNT_DIRECTORY/$STUDY_AREA/Domain_DEM.asc . 
-cp $INPUT_MOUNT_DIRECTORY/$STUDY_AREA/GreenAreas.txt . 
+cp $INPUT_MOUNT_DIRECTORY/$STUDY_AREA/Spatial_GreenAreas.txt . 
 # Get the config files.
 cp $CONFIG_MOUNT_DIRECTORY/$CONFIG/Rainfall_Data_$RAINFALL_DATA_FILE.txt . 
 cp $CONFIG_MOUNT_DIRECTORY/$CONFIG/CityCat_Config_$CITYCAT_CONFIG_FILE.txt . 
