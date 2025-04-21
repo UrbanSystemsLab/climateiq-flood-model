@@ -3,21 +3,24 @@
 
 FROM ubuntu:20.04
 
-ENV DEBIAN_FRONTEND noninteractive
+# Set environment for non-interactive installations
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common \
         ca-certificates \
-        language-pack-en \
-        language-pack-zh-han* \
         locales \
-        locales-all \
-        wget 
+        wget \
+        vim \
+        zip \
+        xvfb \
+        x11-utils \
+        xdotool
 
-RUN apt-get install -y --no-install-recommends \
-    vim \ 
-    zip
+# Configure locales
+RUN locale-gen en_US.UTF-8 && \
+    update-locale LANG=en_US.UTF-8
 
 # Install Wine
 RUN dpkg --add-architecture i386 && \
@@ -25,7 +28,8 @@ RUN dpkg --add-architecture i386 && \
     wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && \
     wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources && \
     apt-get update -y --fix-missing && \
-    apt-get install -y --install-recommends winehq-stable
+    apt-get install -y --install-recommends winehq-stable && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set env variable defaults
 ENV INPUT_MOUNT_DIRECTORY=/mnt/disks/share/climateiq-flood-simulation-input
