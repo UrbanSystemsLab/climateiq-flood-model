@@ -8,7 +8,7 @@ from typing import List, Mapping, Sequence, TextIO
 import jinja2
 from google.cloud import storage
 
-_CITY_CAT_CONFIG_BUCKET = "climateiq-flood-simulation-config"
+_CITY_CAT_CONFIG_BUCKET = "test-climateiq-flood-simulation-config"
 
 
 @dataclasses.dataclass(slots=True)
@@ -85,9 +85,12 @@ def _upload_city_cat_configs(
         ).upload_from_string(config_file)
 
         for path in rainfall_configs:
+            rainfall_blob_name = f"{config_name}/Rainfall_Data_{rainfall_config_i}.txt"
             bucket.blob(
                 f"{config_name}/Rainfall_Data_{rainfall_config_i}.txt"
             ).upload_from_filename(path)
+            with open("rainfall_mapping.csv", "a") as f:
+                f.write(f"{rainfall_blob_name},{path.name}\n")  # OR path.as_posix()
             configs.append(_ConfigMapping(city_cat_config_i, rainfall_config_i))
             rainfall_config_i += 1
 
